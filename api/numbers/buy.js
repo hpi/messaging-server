@@ -23,13 +23,13 @@ module.exports = (req, res, next) => {
   if (!number || !name) {
     error(`include a number and name to buy`)
 
-    return res.sendStatus(400)
+    return res.status(400).end()
   }
 
   const isAllowed = checkAuth(req, `messaging:numbers:buy`)
 
   if (!isAllowed) {
-    return res.sendStatus(403)
+    return res.status(403).end()
   }
 
   try {
@@ -53,6 +53,6 @@ module.exports = (req, res, next) => {
   } catch (err) {
     error(`error occurred while buying number`, err)
 
-    return res.sendStatus(500)
+    return res.status(500).end()
   }
 }

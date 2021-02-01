@@ -24,7 +24,7 @@ module.exports = (req, res, next) => {
   const isAllowed = checkAuth(req, `messaging:outgoing:sms`)
 
   if (!isAllowed) {
-    return res.sendStatus(403)
+    return res.status(403).end()
   }
 
   if (!from || !to) {
@@ -50,7 +50,7 @@ module.exports = (req, res, next) => {
   } catch (err) {
     error(`Error occurred while sending SMS: `, err)
 
-    return res.sendStatus(500)
+    return res.status(500).end()
   }
 }
 

@@ -26,7 +26,7 @@ module.exports = async (req, res, next) => {
   const isAllowed = checkAuth(req, `messaging:numbers:find`)
 
   if (!isAllowed) {
-    return res.sendStatus(403)
+    return res.status(403).end()
   }
 
   try {
@@ -40,7 +40,7 @@ module.exports = async (req, res, next) => {
   } catch (err) {
     error(`error occurred while finding numbers: `, error)
 
-    return res.sendStatus(500)
+    return res.status(500).end()
   }
 }
 

@@ -19,7 +19,7 @@ module.exports = async (req, res, next) => {
   const isAllowed = checkAuth(req, `messaging:numbers:release`)
 
   if (!isAllowed) {
-    return res.sendStatus(403)
+    return res.status(403).end()
   }
 
   try {
@@ -27,11 +27,11 @@ module.exports = async (req, res, next) => {
     // it to another user before the number is fully 'cleaned' by Twilio.
     await twilio.incomingPhoneNumbers(sid).remove()
 
-    return res.sendStatus(200)
+    return res.status(200).end()
   } catch (err) {
     error(`error occurred releasing number: `, error)
 
-    return res.sendStatus(500)
+    return res.status(500).end()
   }
 }
 

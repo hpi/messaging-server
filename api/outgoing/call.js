@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
   const isAllowed = checkAuth(req, `messaging:outgoing:call`)
 
   if (!isAllowed) {
-    return res.sendStatus(403)
+    return res.status(403).end()
   }
 
   const voiceResponse = new VoiceResponse()

@@ -8,9 +8,12 @@ const {
 module.exports = (req, claim) => {
   const auth = new Auth(JWT_PUBLIC_KEY)
 
+  if (!req.headers.authorization) {
+    return false
+  }
+
   const [ _, token ] = req.headers.authorization.split(` `)
 
-  console.log("TOKEN:", token)
   if (!token) {
     return false
   }

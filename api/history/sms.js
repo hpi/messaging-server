@@ -35,7 +35,7 @@ module.exports = async (req, res, next) => {
   const isAllowed = checkAuth(req, `messaging:history:sms`)
 
   if (!isAllowed) {
-    return res.sendStatus(403)
+    return res.status(403).end()
   }
 
   log(`getting SMS history for query: `, req.query)
